@@ -10,6 +10,14 @@ export default function CursorParticles() {
     const mount = mountRef.current;
     if (!mount) return;
 
+    const isTouchOrMobile =
+      window.matchMedia("(hover: none)").matches ||
+      window.matchMedia("(pointer: coarse)").matches;
+
+    if (isTouchOrMobile) {
+      return;
+    }
+
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(
       window.innerWidth / -2,
